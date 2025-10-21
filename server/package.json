@@ -2,12 +2,14 @@
   "name": "fs-api",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
+    "dev": "tsx watch --clear-screen=false src/index.ts",
+    "dev:wait": "wait-on tcp:postgres:5432 && tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
-    "prisma:push": "npx prisma db push",
-    "prisma:migrate": "npx prisma migrate dev",
-    "studio": "npx prisma studio --hostname 0.0.0.0 --port 5555"
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio --browser none --port 5555"
   },
   "dependencies": {
     "@prisma/client": "^5.20.0",
@@ -38,6 +40,7 @@
     "prisma": "^5.20.0",
     "ts-node-dev": "^2.0.0",
     "tsx": "^4.20.6",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wait-on": "^9.0.1"
   }
 }

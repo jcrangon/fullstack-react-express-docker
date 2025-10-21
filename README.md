@@ -7,6 +7,7 @@ docker compose build
 docker compose up -d
 
 # Init DB Prisma
+docker compose exec api npx prisma generate
 docker compose exec api npx prisma db push
 
 # (option) Prisma Studio
